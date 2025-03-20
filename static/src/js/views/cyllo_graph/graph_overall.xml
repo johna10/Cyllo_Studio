@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="cyllo_studio.GraphOverall">
+<!--        <div class="mb-2">-->
+<!--            <div class="cy-graph-container">-->
+<!--                <span t-if="state.activeGraphs and state.activeGraphs.length > state.itemsPerPage"-->
+<!--                      t-att-style="state.currentPage > 0 ? 'color: #ffffff;' : ''">-->
+<!--                    <i class="ri-arrow-left-s-line"/>-->
+<!--                </span>-->
+<!--                <div class="cy-graph-selected d-flex align-items-center justify-content-between">-->
+<!--                    <t t-foreach="visibleGraphTypes" t-as="type"-->
+<!--                       t-key="type">-->
+<!--                        <span class="cy-studio-graph-icon p-2 cy-status_bar_hover"-->
+<!--                        >-->
+<!--                            <i t-att-class="graphIcons[type]"-->
+<!--                               t-att-data-tooltip="capitalizeFirstLetter(type)"-->
+<!--                               t-att-style="state.graph_type == type ? 'color: #9EA700;' : ''"/>-->
+<!--                        </span>-->
+<!--                    </t>-->
+<!--                </div>-->
+<!--                <span t-if="state.activeGraphs.length > state.itemsPerPage"-->
+<!--                      t-on-click="() => this.nextPage()"-->
+<!--                      t-att-style="state.currentPage == 0 ? 'color: #ffffff;' : ''">-->
+<!--                    <i class="ri-arrow-right-s-line"/>-->
+<!--                </span>-->
+<!--            </div>-->
+<!--        </div>-->
+        <br/>
+        <div class="m-3 graph_properties">
+            <div class="dropdown-checkbox-container">
+                <label class="cy-navbar_label customCheckbox-label" for="sorting">Sorting:</label>
+                <div class="cy-studio-custom-dropdown">
+                    <CylloStudioDropdown
+                            options="sortGraph"
+                            onChange="(value) => this.updateOrder(value)"
+                            searchable="true"
+                            defaultValue="props.mode.order == 'ASC' ? 'ASC' : 'DESC'"
+                    />
+                </div>
+            </div>
+            <div class="checkbox-item">
+                <input class="checkbox-input d-none ViewCheck" type="checkbox" id="stacked"
+                       name="checkbox4"/>
+                <label class="checkbox-label" for="stacked">
+                    <span class="checkbox-indicator">
+                        <svg width="12px" height="9px" viewbox="0 0 12 9">
+                            <polyline points="1 5 4 8 11 1"></polyline>
+                        </svg>
+                    </span>
+                    <span class="label-text">Stacked Graph</span>
+                </label>
+            </div>
+            <div class="checkbox-item">
+                <input class="checkbox-input d-none ViewCheck" type="checkbox" id="link_to_record"
+                       name="checkbox4"/>
+                <label class="checkbox-label" for="link_to_record">
+                    <span class="checkbox-indicator">
+                        <svg width="12px" height="9px" viewbox="0 0 12 9">
+                            <polyline points="1 5 4 8 11 1"></polyline>
+                        </svg>
+                    </span>
+                    <span class="label-text">Disable Link To Record</span>
+                </label>
+            </div>
+
+            <div class="d-flex mt-2">
+                <button t-if="state.New" class="plus_input"
+                        t-on-click="handleGroupBy">
+                    <i class="fa fa-plus"/>
+                </button>
+                <label class="label-text" for="positionSelect">
+                    <span>Group By:</span>
+                </label>
+            </div>
+            <div t-if="!state.New"
+                 class="cy-input d-flex justify-content-between">
+                <Dropdown
+                        togglerClass="'btn cy-studio-dropdown cy-select-back'"
+                        showCaret="true">
+                    <t t-set-slot="toggler">
+                        <span style="margin-left: -7px;">Select an option</span>
+                    </t>
+                    <t t-foreach="this.fields" t-as="field"
+                       t-key="field.name">
+                        <AccordionItem
+                                t-if="field.type &amp;&amp; ['date', 'datetime'].includes(field.type)"
+                                description="field?.string">
+                            <div t-on-click="()=>this.updateDimension(field.name, false, 'year')">
+                                <a class="dropdown-item" href="#">Year</a>
+                            </div>
+                            <div t-on-click="()=>this.updateDimension(field.name, false, 'quarter')">
+                                <a class="dropdown-item" href="#">Quarter</a>
+                            </div>
+                            <div t-on-click="()=>this.updateDimension(field.name, false, 'month')">
+                                <a class="dropdown-item" href="#">Month</a>
+                            </div>
+                            <div t-on-click="()=>this.updateDimension(field.name, false, 'week')">
+                                <a class="dropdown-item" href="#">Week</a>
+                            </div>
+                            <div t-on-click="()=>this.updateDimension(field.name, false, 'day')">
+                                <a class="dropdown-item" href="#">Day</a>
+                            </div>
+                        </AccordionItem>
+
+                        <DropdownItem t-else=""
+                                      onSelected="()=>this.updateDimensions(field.name)">
+                            <span t-esc="field?.string"/>
+                        </DropdownItem>
+                    </t>
+
+                </Dropdown>
+                <i t-on-click="() => this.removeGroupBy('measure', field)"
+                   class="mx-2 cursor-pointer ri-delete-bin-2-fill"/>
+            </div>
+        </div>
+    </t>
+</templates>

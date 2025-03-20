@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="cyllo_studio.ViewSelectionDropDown">
+        <div t-ref="root">
+            <div class="hnk-selected d-flex gap-2" t-if="props.view">
+                <t t-if="state.activatedViews">
+                    <t t-foreach="state.activatedViews" t-as="view" t-key="view_index">
+                        <t t-if="ViewTypes.includes(view[1])">
+                            <span class="cy-status_bar-icon cy-status_bar_hover"  t-on-click="() => view[1] == 'search' ? this.onSearchClick() : this.onViewClicked(view)">
+                                <i t-att-class="viewIcons[view[1]]"
+                                />
+                            </span>
+                        </t>
+                    </t>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>

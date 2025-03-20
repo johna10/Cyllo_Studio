@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="cyllo_studio.AsideBar">
+         <div class="cy-side-menu col-2" t-att-class="props?.isAnimating ? 'animate-out' : ''">
+            <div class="d-flex">
+
+                <div class="cy-window-view w-100 d-flex justify-content-center align-items-center" t-on-click="(ev)=> this.props.handleView(ev)">
+                    <button class="w-100 cy-nav__link" t-att-class="props.type === 'View' ? 'active' : ''">View</button>
+                </div>
+                <div t-if="propsType" class=" w-100 d-flex justify-content-center align-items-center">
+                    <button class="w-100 cy-nav__link " t-att-class="propsType ? 'active' : ''">Properties</button>
+                </div>
+                    <button class="cy-close-arrow" t-on-click="() => this.closeSidebar()"><i class="ri-arrow-left-fill"/></button>
+
+            </div>
+            <t t-if="props.type === 'Properties'">
+                <FieldProperties t-props="fieldPropertiesProps"/>
+            </t>
+            <t t-if="props.type === 'View'">
+                <t t-log="'overallProps',overallProps"></t>
+                <OverallView t-props="overallProps"/>
+            </t>
+            <t t-if="props.type === 'ButtonProperties'">
+                <ButtonProperties t-props="ButtonPropertiesProps"/>
+            </t>
+              <t t-if="props.type === 'kanbanfieldproperties'">
+            <KanbanFieldProperties t-props="kanbanfieldPropertiesProps"/>
+        </t>
+              <t t-if="props.type === 'ribbon'">
+            <RibbonProperties t-props="KanbanComponentProps"/>
+        </t>
+        <t t-if="props.type === 'button'">
+            <ButtonProperties t-props="KanbanComponentProps"/>
+        </t>
+          <t t-if="props.type === 'text'">
+            <TextProperties t-props="KanbanComponentProps"/>
+        </t>
+             <t t-if="props.type === 'notebook_details'">
+                 <t t-log="'eeeeeeeeeeeee',noteBookPropertiesProps"></t>
+            <PageProperties t-props="noteBookPropertiesProps"/>
+        </t>
+            <t t-if="props.type === 'smartbuttonProperties'">
+            <SmartButtonProperties t-props="SmartButtonPropertiesProps"/>
+        </t>
+
+
+         </div>
+
+    </t>
+</templates>

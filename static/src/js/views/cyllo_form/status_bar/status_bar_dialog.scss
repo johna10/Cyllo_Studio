@@ -1,0 +1,153 @@
+/* Base Modal Styling */
+.cy-modal_dialog {
+  .cy-modal_content {
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+
+    .cy-studio_head {
+      padding: 24px;
+      background: #f8f9fa;
+      border-bottom: 1px solid #e9ecef;
+
+      .cy-modal-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #212529;
+      }
+
+      .cy-studio-modal_subtitle {
+        color: #6c757d;
+        margin-top: 8px;
+      }
+    }
+
+    .cy-modal__body {
+      padding: 24px;
+      background: white;
+
+      .d-flex.gap-3 {
+        margin-bottom: 20px;
+
+        .form-check-label {
+          font-size: 0.9rem;
+          color: #495057;
+        }
+
+        input[type="radio"] {
+          margin-top: 3px;
+        }
+      }
+
+      .cy-modal-main_content {
+        gap: 24px;
+
+        .w-100 {
+          flex: 1;
+          max-width: 100%;
+
+          .mb-4 {
+            margin-bottom: 24px;
+
+            .cy-modal_label {
+              font-size: 0.9rem;
+              font-weight: 500;
+              color: #343a40;
+              margin-bottom: 8px;
+              display: block;
+            }
+
+            input.cy-input-modal {
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #ced4da;
+              border-radius: 4px;
+              font-size: 0.9rem;
+
+              &:focus {
+                border-color: #9ea700;
+                box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+                outline: none;
+              }
+            }
+
+            .cy-studio-custom-dropdown-dialog {
+              margin-top: 8px;
+              border-radius: 4px;
+              padding: 8px;
+            }
+
+            .cy-input-visible-to {
+              border-radius: 4px;
+              padding: 8px;
+              margin-top: 8px;
+            }
+          }
+
+          .d-flex.align-items-center.gap-3 {
+            gap: 16px;
+
+            .form-check-label {
+              font-size: 0.9rem;
+              color: #495057;
+            }
+
+            input[type="checkbox"] {
+              margin-top: 3px;
+            }
+          }
+        }
+      }
+
+      button.cy-btn_stroke {
+        margin-top: 20px;
+        padding: 10px 15px;
+        background: white;
+        border: 1px solid #9ea700;
+        color: #9ea700;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: #9ea700;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+/* Footer Buttons */
+.t-set-slot.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 24px;
+
+  button {
+    margin-left: 12px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+
+    &:first-child {
+      background: #9ea700;
+      color: white;
+      border: none;
+
+      &:hover {
+        background: #43a047;
+      }
+    }
+
+    &:last-child {
+      background: #f8f9fa;
+      color: #495057;
+      border: 1px solid #ced4da;
+
+      &:hover {
+        background: #e9ecef;
+      }
+    }
+  }
+}
